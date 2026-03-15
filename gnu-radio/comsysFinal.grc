@@ -1,0 +1,1637 @@
+options:
+  parameters:
+    author: Kavija Karunarathna
+    catch_exceptions: 'True'
+    category: Custom
+    cmake_opt: ''
+    comment: ''
+    copyright: ''
+    description: ''
+    gen_cmake: 'On'
+    gen_linking: dynamic
+    generate_options: qt_gui
+    hier_block_src_path: '.:'
+    id: comsys
+    max_nouts: '0'
+    output_language: python
+    placement: (0,0)
+    qt_qss_theme: ''
+    realtime_scheduling: ''
+    run: 'True'
+    run_command: '{python} -u {filename}'
+    run_options: prompt
+    sizing_mode: fixed
+    thread_safe_setters: ''
+    title: comsysFinal
+    window_size: 2000,2000
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 72.0]
+    rotation: 0
+    state: enabled
+
+blocks:
+- name: ack_repetitions
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Data Repetitions
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '1'
+    step: '100'
+    stop: '2000'
+    value: '5'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [776, 20.0]
+    rotation: 0
+    state: enabled
+- name: cmaEqualizer
+  id: variable_adaptive_algorithm
+  parameters:
+    comment: ''
+    cons: qpsk
+    delta: '10.0'
+    ffactor: '0.99'
+    modulus: '4'
+    step_size: '.0001'
+    type: cma
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [432, 16.0]
+    rotation: 0
+    state: enabled
+- name: data_repetitions
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Data Repetitions
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '1'
+    step: '100'
+    stop: '2000'
+    value: '5'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [672, 16.0]
+    rotation: 0
+    state: enabled
+- name: excess_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.35'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 16.0]
+    rotation: 0
+    state: enabled
+- name: freq
+  id: variable
+  parameters:
+    comment: ''
+    value: '900000000'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [880, 24.0]
+    rotation: 0
+    state: enabled
+- name: hdr_format
+  id: variable_header_format_default
+  parameters:
+    access_code: '1101100111000011010101110010111011000101110010111011110010101010'
+    bps: '1'
+    comment: ''
+    threshold: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [536, 16.0]
+    rotation: 0
+    state: enabled
+- name: nfilts
+  id: variable
+  parameters:
+    comment: ''
+    value: '32'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 16.0]
+    rotation: 0
+    state: enabled
+- name: phase_bw
+  id: variable
+  parameters:
+    comment: ''
+    value: '0.0628'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 16.0]
+    rotation: 0
+    state: true
+- name: qpsk
+  id: variable_constellation_rect
+  parameters:
+    comment: ''
+    const_points: '[0.707+0.707j, -0.707+0.707j, -0.707-0.707j, 0.707-0.707j]'
+    imag_sect: '2'
+    precision: '8'
+    real_sect: '2'
+    rot_sym: '4'
+    soft_dec_lut: None
+    sym_map: '[0, 1, 3, 2]'
+    w_imag_sect: '1'
+    w_real_sect: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 16.0]
+    rotation: 0
+    state: enabled
+- name: rrc_taps
+  id: variable
+  parameters:
+    comment: ''
+    value: firdes.root_raised_cosine(1, samp_rate, samp_rate/float(sps), excess_bw,
+      sps*nfilts)
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [128, 80.0]
+    rotation: 0
+    state: enabled
+- name: samp_rate
+  id: variable
+  parameters:
+    comment: ''
+    value: 1e6
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [184, 16.0]
+    rotation: 0
+    state: enabled
+- name: sps
+  id: variable
+  parameters:
+    comment: ''
+    value: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [248, 16.0]
+    rotation: 0
+    state: enabled
+- name: blocks_message_debug_0
+  id: blocks_message_debug
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    en_uvec: 'True'
+    log_level: info
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1192, 820.0]
+    rotation: 0
+    state: enabled
+- name: blocks_repack_bits_bb_0
+  id: blocks_repack_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    align_output: 'False'
+    comment: ''
+    endianness: gr.GR_MSB_FIRST
+    k: '1'
+    l: '8'
+    len_tag_key: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [872, 680.0]
+    rotation: 0
+    state: enabled
+- name: blocks_tagged_stream_mux_0
+  id: blocks_tagged_stream_mux
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    lengthtagname: '"packet_len"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    ninputs: '2'
+    tag_preserve_head_pos: '0'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1432, 220.0]
+    rotation: 0
+    state: enabled
+- name: blocks_throttle2_0_0
+  id: blocks_throttle2
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    ignoretag: 'True'
+    limit: auto
+    maximum: '0.1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_second: samp_rate
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [152, 216.0]
+    rotation: 0
+    state: enabled
+- name: blocks_uchar_to_float_0
+  id: blocks_uchar_to_float
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 612.0]
+    rotation: 0
+    state: enabled
+- name: blocks_unpack_k_bits_bb_0
+  id: blocks_unpack_k_bits_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    k: '2'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [520, 684.0]
+    rotation: 0
+    state: enabled
+- name: channels_channel_model_0_0
+  id: channels_channel_model
+  parameters:
+    affinity: ''
+    alias: ''
+    block_tags: 'False'
+    comment: ''
+    epsilon: '1.0005'
+    freq_offset: '0.025'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    noise_voltage: '0.2'
+    seed: '0'
+    taps: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [440, 348.0]
+    rotation: 0
+    state: enabled
+- name: digital_constellation_decoder_cb_0
+  id: digital_constellation_decoder_cb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 428.0]
+    rotation: 0
+    state: true
+- name: digital_constellation_modulator_0_0
+  id: digital_constellation_modulator
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: qpsk
+    differential: 'True'
+    excess_bw: excess_bw
+    log: 'False'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samples_per_symbol: sps
+    truncate: 'False'
+    verbose: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [208, 360.0]
+    rotation: 0
+    state: enabled
+- name: digital_correlate_access_code_xx_ts_0
+  id: digital_correlate_access_code_xx_ts
+  parameters:
+    access_code: '1101100111000011010101110010111011000101110010111011110010101010'
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tagname: packet_len
+    threshold: '3'
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [664, 676.0]
+    rotation: 0
+    state: enabled
+- name: digital_costas_loop_cc_0
+  id: digital_costas_loop_cc
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    order: '4'
+    use_snr: 'False'
+    w: phase_bw
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 428.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_append_0
+  id: digital_crc_append
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [680, 204.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_append_0_0
+  id: digital_crc_append
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [680, 268.0]
+    rotation: 0
+    state: enabled
+- name: digital_crc_check_0
+  id: digital_crc_check
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    discard_crc: 'True'
+    final_xor: '0xFFFFFFFF'
+    initial_value: '0xFFFFFFFF'
+    input_reflected: 'True'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_bits: '32'
+    poly: '0x4C11DB7'
+    result_reflected: 'True'
+    skip_header_bytes: '0'
+    swap_endianness: 'False'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [408, 804.0]
+    rotation: 0
+    state: true
+- name: digital_diff_decoder_bb_0
+  id: digital_diff_decoder_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    coding: digital.DIFF_DIFFERENTIAL
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    modulus: '4'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 680.0]
+    rotation: 0
+    state: enabled
+- name: digital_linear_equalizer_0
+  id: digital_linear_equalizer
+  parameters:
+    adapt_after_training: 'True'
+    affinity: ''
+    alg: cmaEqualizer
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_taps: '15'
+    sps: '2'
+    training_sequence: '[ ]'
+    training_start_tag: corr_est
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [568, 460.0]
+    rotation: 0
+    state: enabled
+- name: digital_map_bb_0
+  id: digital_map_bb
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    map: '[0,1,3,2]'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [368, 684.0]
+    rotation: 0
+    state: enabled
+- name: digital_protocol_formatter_async_0
+  id: digital_protocol_formatter_async
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    format: hdr_format
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1016, 204.0]
+    rotation: 0
+    state: enabled
+- name: digital_symbol_sync_xx_0
+  id: digital_symbol_sync_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    constellation: digital.constellation_bpsk().base()
+    damping: '1.0'
+    loop_bw: '0.045'
+    max_dev: '1.5'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nfilters: '128'
+    osps: '2'
+    pfb_mf_taps: '[]'
+    resamp_type: digital.IR_MMSE_8TAP
+    sps: sps
+    ted_gain: '1.0'
+    ted_type: digital.TED_GARDNER
+    type: cc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [320, 492.0]
+    rotation: 0
+    state: true
+- name: epy_block_0
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\n\n\nclass\
+      \ blk(gr.sync_block):\n    \"\"\"\n    Message assembler for GUI chat packets.\n\
+      \n    Input:  byte stream (np.uint8) from ZMQ SUB Source\n    Output: PDUs on\
+      \ 'msg_out', each PDU is a complete GUI packet:\n            [src_id][dst_id][len_hi][len_lo][payload...]\n\
+      \n    Packet format (from GUI):\n      byte 0: src_id       (uint8)\n      byte\
+      \ 1: dst_id       (uint8)\n      byte 2: len_hi       (uint8)\n      byte 3:\
+      \ len_lo       (uint8)\n      bytes 4..(4+len-1): payload bytes (UTF-8 text)\n\
+      \    \"\"\"\n\n    def __init__(self):\n        gr.sync_block.__init__(\n  \
+      \          self,\n            name=\"message_assembler\",\n            in_sig=[np.uint8],\n\
+      \            out_sig=None,  # no stream output; only PDUs\n        )\n\n   \
+      \     # Internal buffer to accumulate bytes across work() calls\n        self._buf\
+      \ = bytearray()\n\n        # Register output message port\n        self.message_port_register_out(pmt.intern(\"\
+      msg_out\"))\n\n    def work(self, input_items, output_items):\n        in0 =\
+      \ input_items[0]\n        n = len(in0)\n\n        if n == 0:\n            return\
+      \ 0\n\n        # Append new bytes from the stream into our buffer\n        self._buf.extend(in0.tobytes())\n\
+      \n        # Try to extract as many complete packets as possible\n        while\
+      \ True:\n            # Need at least 4 bytes for header: src, dst, len_hi, len_lo\n\
+      \            if len(self._buf) < 4:\n                break\n\n            src_id\
+      \ = self._buf[0]\n            dst_id = self._buf[1]\n            length = (self._buf[2]\
+      \ << 8) | self._buf[3]\n\n            # Sanity check on length (optional, but\
+      \ helpful)\n            if length < 0 or length > 65535:\n                print(\"\
+      [message_assembler] Invalid length field:\", length)\n                self._buf.clear()\n\
+      \                break\n\n            # Do we have the full payload yet?\n \
+      \           needed = 4 + length\n            if len(self._buf) < needed:\n \
+      \               # Not enough data yet; wait for next work() call\n         \
+      \       break\n\n            # Extract one complete GUI packet\n           \
+      \ pkt_bytes = self._buf[:needed]\n            # Remove it from the buffer\n\
+      \            del self._buf[:needed]\n\n            # Convert to a list of ints\
+      \ for init_u8vector\n            pkt_list = [int(b) for b in pkt_bytes]\n\n\
+      \            # Wrap as a PDU: (dict, u8vector)\n            meta = pmt.make_dict()\
+      \  # no metadata for now\n            vec = pmt.init_u8vector(len(pkt_list),\
+      \ pkt_list)\n            pdu = pmt.cons(meta, vec)\n\n            # Publish\
+      \ the packet\n            self.message_port_pub(pmt.intern(\"msg_out\"), pdu)\n\
+      \n            # Optional debug print\n            # print(f\"[message_assembler]\
+      \ Emitted packet: src={src_id}, dst={dst_id}, len={length}\")\n\n        # We\
+      \ always consume all input samples\n        return n\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''message_assembler'', ''blk'', [], [(''0'', ''byte'', 1)], [(''msg_out'',
+      ''message'', 1)], "\n    Message assembler for GUI chat packets.\n\n    Input:  byte
+      stream (np.uint8) from ZMQ SUB Source\n    Output: PDUs on ''msg_out'', each
+      PDU is a complete GUI packet:\n            [src_id][dst_id][len_hi][len_lo][payload...]\n\n    Packet
+      format (from GUI):\n      byte 0: src_id       (uint8)\n      byte 1: dst_id       (uint8)\n      byte
+      2: len_hi       (uint8)\n      byte 3: len_lo       (uint8)\n      bytes 4..(4+len-1):
+      payload bytes (UTF-8 text)\n    ", [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [304, 220.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_1
+  id: epy_block
+  parameters:
+    _source_code: "import numpy as np\nfrom gnuradio import gr\nimport pmt\nimport\
+      \ time\nimport threading\n\n# ARQ frame contributed by this framer (before protocol\
+      \ formatter + CRC)\n# RF frame: 12B header + 48B ARQ frame + 4B CRC = 64 bytes\
+      \ total\nARQ_FRAME_SIZE   = 48          # bytes from this block\nARQ_HEADER_SIZE\
+      \  = 4           # [SEQ][FLAGS][SRC_ID][DST_ID]\nARQ_PAYLOAD_SIZE = ARQ_FRAME_SIZE\
+      \ - ARQ_HEADER_SIZE  # 44 bytes\n\n\nclass blk(gr.basic_block):\n    \"\"\"\n\
+      \    Stop-and-wait ARQ framer with fixed 48-byte frames (for 64B RF frame).\n\
+      \n    Upstream message format (from message_assembler on 'data_in'):\n     \
+      \   [src_id][dst_id][len_hi][len_lo][payload...]\n\n    Framer output (on 'frame_out'):\
+      \ fixed 48-byte ARQ frames:\n        byte 0   : SEQ        (uint8)\n       \
+      \ byte 1   : FLAGS      (bit0 = LAST_FRAME, bit1 = IS_ACK, others 0)\n     \
+      \   byte 2   : SRC_ID     (uint8)\n        byte 3   : DST_ID     (uint8)\n \
+      \       byte 4.. : payload chunk (up to 44 bytes, zero-padded)\n\n    Notes:\n\
+      \      - No preamble, no length, no CRC here.\n        Protocol formatter (12B\
+      \ header) and CRC (4B) are applied later to\n        reach 64B total on the\
+      \ air.\n      - Fragmentation is done over the entire upstream message.\n  \
+      \    - ACK frames use the same 48B format with IS_ACK=1 and empty payload.\n\
+      \n    Retransmission behavior in this implementation:\n      - For each DATA\
+      \ frame (one fragment):\n          * Build the 48B frame once.\n          *\
+      \ Continuously transmit that same frame on \"frame_out\" as a stream\n     \
+      \       until either:\n              - a matching ACK is received, OR\n    \
+      \          - the retry limit for that frame is reached.\n      - retry limit\
+      \ per frame:\n          * repeat_enable = False  -> 1 transmit (no extra retries)\n\
+      \          * repeat_enable = True   -> repeat_count total transmits for that\
+      \ frame\n      - Stop-and-wait is preserved: next fragment is not started until\
+      \ ACK\n        for the current SEQ is accepted (or you\u2019ve exhausted retries\
+      \ and\n        you decide what to do at a higher layer).\n    \"\"\"\n\n   \
+      \ def __init__(self, repeat_enable=False, repeat_count=1):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"arq_framer\",\n            in_sig=None,\n\
+      \            out_sig=None,\n        )\n\n        # --- Parameters ---\n    \
+      \    self.repeat_enable = bool(repeat_enable)\n        self.repeat_count  =\
+      \ max(1, int(repeat_count))\n\n        # --- ARQ state ---\n        self._seq\
+      \             = 0          # current SEQ (uint8)\n        self._current_msg\
+      \     = None       # bytes: full message from data_in\n        self._msg_len\
+      \         = 0\n        self._offset          = 0          # how many bytes already\
+      \ sent from msg\n        self._last_chunk_len  = 0          # last payload chunk\
+      \ length\n        self._waiting_for_ack = False\n\n        self._src_id    \
+      \      = 0\n        self._dst_id          = 0\n\n        # Keep original metadata\
+      \ to propagate downstream if needed\n        self._current_meta    = pmt.PMT_NIL\n\
+      \n        # Retransmission state:\n        #   _current_frame_pdu : last frame\
+      \ we are actively trying to get ACK for\n        #   _retries_left      : how\
+      \ many more times we'll transmit this frame\n        #   _resend_interval  \
+      \ : small delay between transmits (behaves like stream)\n        self._current_frame_pdu\
+      \ = None\n        self._retries_left      = 0\n        self._resend_interval\
+      \   = 0.001  # seconds; small -> almost continuous\n\n        # --- Message\
+      \ ports ---\n        self.message_port_register_in(pmt.intern(\"data_in\"))\n\
+      \        self.message_port_register_in(pmt.intern(\"ack_in\"))\n        self.message_port_register_out(pmt.intern(\"\
+      frame_out\"))\n\n        self.set_msg_handler(pmt.intern(\"data_in\"), self.handle_data_pdu)\n\
+      \        self.set_msg_handler(pmt.intern(\"ack_in\"),  self.handle_ack_pdu)\n\
+      \n        # Background retransmission loop: keeps re-sending current frame\n\
+      \        self._tx_thread = threading.Thread(\n            target=self._retransmit_loop,\n\
+      \            daemon=True,\n        )\n        self._tx_thread.start()\n\n  \
+      \  # ------------------------------------------------------------------\n  \
+      \  # Background: retransmission loop\n    # ------------------------------------------------------------------\n\
+      \    def _retransmit_loop(self):\n        \"\"\"\n        Continuously streams\
+      \ the current frame while we are waiting for ACK:\n          - If _waiting_for_ack\
+      \ is True, _current_frame_pdu is not None,\n            and _retries_left >\
+      \ 0:\n              * send that PDU on frame_out\n              * decrement\
+      \ _retries_left\n          - Stops sending when:\n              * ACK handler\
+      \ clears _waiting_for_ack, OR\n              * _retries_left reaches 0.\n  \
+      \      \"\"\"\n        port_sym = pmt.intern(\"frame_out\")\n\n        while\
+      \ True:\n            if (\n                self._waiting_for_ack\n         \
+      \       and self._current_frame_pdu is not None\n                and self._retries_left\
+      \ > 0\n            ):\n                # Transmit the current frame again\n\
+      \                print(\"Frame transmitted\")\n                self.message_port_pub(port_sym,\
+      \ self._current_frame_pdu)\n                self._retries_left -= 1\n\n    \
+      \            # Very small pause to avoid completely hogging CPU,\n         \
+      \       # but still essentially \"streaming\".\n                time.sleep(self._resend_interval)\n\
+      \n            else:\n                # Either not waiting, or no frame, or retries\
+      \ exhausted.\n                # Just idle a bit.\n                time.sleep(0.001)\n\
+      \n    # ------------------------------------------------------------------\n\
+      \    # DATA from upper layer (new message to send)\n    # ------------------------------------------------------------------\n\
+      \    def handle_data_pdu(self, pdu):\n        \"\"\"\n        Accept a new higher-layer\
+      \ message to be fragmented and sent.\n\n        Input PDU: (meta, u8vector)\n\
+      \        Bytes: [src_id][dst_id][len_hi][len_lo][payload...]\n\n        We fragment\
+      \ the entire message into ARQ frames, but also copy src_id\n        and dst_id\
+      \ into every frame header for convenience.\n        \"\"\"\n        if self._waiting_for_ack\
+      \ or self._current_msg is not None:\n            print(\"[arq_framer] Busy (waiting\
+      \ for ACK or message in progress); \"\n                  \"ignoring new data_in\
+      \ PDU.\")\n            return\n\n        meta = pmt.car(pdu)\n        vec  =\
+      \ pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(vec):\n            print(\"\
+      [arq_framer] data_in: expected u8vector\")\n            return\n\n        msg\
+      \ = bytes(bytearray(pmt.u8vector_elements(vec)))\n        if len(msg) == 0:\n\
+      \            print(\"[arq_framer] data_in: empty message, ignoring\")\n    \
+      \        return\n\n        # Extract SRC and DST from message as produced by\
+      \ message_assembler\n        if len(msg) >= 2:\n            self._src_id = msg[0]\n\
+      \            self._dst_id = msg[1]\n        else:\n            self._src_id\
+      \ = 0\n            self._dst_id = 0\n            print(\"[arq_framer] Warning:\
+      \ message too short to extract src/dst, \"\n                  \"using 0/0\"\
+      )\n\n        self._current_msg       = msg\n        self._msg_len          \
+      \ = len(msg)\n        self._offset            = 0\n        self._last_chunk_len\
+      \    = 0\n        self._waiting_for_ack   = False\n        self._current_meta\
+      \      = meta\n        self._current_frame_pdu = None\n        self._retries_left\
+      \      = 0\n\n        print(f\"[arq_framer] New message len={self._msg_len},\
+      \ \"\n              f\"src={self._src_id}, dst={self._dst_id}, starting at SEQ={self._seq}\"\
+      )\n\n        # Kick off first fragment; retransmit loop will handle streaming\n\
+      \        self._send_next_frame()\n\n    # ------------------------------------------------------------------\n\
+      \    # ACK from RX side\n    # ------------------------------------------------------------------\n\
+      \    def handle_ack_pdu(self, pdu):\n        \"\"\"\n        Handle an incoming\
+      \ ACK frame.\n\n        We assume ACK PDU payload is also a 48-byte ARQ frame:\n\
+      \            [SEQ][FLAGS][SRC][DST][zeros...]\n\n        We check:\n       \
+      \   - IS_ACK flag\n          - SEQ matches current SEQ\n        \"\"\"\n   \
+      \     if not self._waiting_for_ack or self._current_msg is None:\n         \
+      \   print(\"[arq_framer] Received ACK while not waiting; ignoring\")\n     \
+      \       return\n\n        vec = pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(vec):\n\
+      \            print(\"[arq_framer] ack_in: expected u8vector\")\n           \
+      \ return\n\n        data = bytes(bytearray(pmt.u8vector_elements(vec)))\n  \
+      \      if len(data) < ARQ_HEADER_SIZE:\n            print(\"[arq_framer] ack_in:\
+      \ frame too short:\", len(data))\n            return\n\n        seq_ack = data[0]\n\
+      \        flags   = data[1]\n\n        is_ack  = (flags >> 1) & 0x01\n\n    \
+      \    if not is_ack:\n            print(f\"[arq_framer] ack_in: received non-ACK\
+      \ frame (flags=0x{flags:02X}), ignoring\")\n            return\n\n        expected_seq\
+      \ = self._seq & 0xFF\n        if seq_ack != expected_seq:\n            print(f\"\
+      [arq_framer] ack_in: SEQ mismatch (expected={expected_seq}, \"\n           \
+      \       f\"got={seq_ack}), ignoring\")\n            return\n\n        print(f\"\
+      [arq_framer] ACK received for SEQ={seq_ack}\")\n\n        # ACK matches: stop\
+      \ retransmissions for this frame\n        self._waiting_for_ack   = False\n\
+      \        self._current_frame_pdu = None\n        self._retries_left      = 0\n\
+      \n        # Move offset by last chunk size\n        self._offset += self._last_chunk_len\n\
+      \        self._last_chunk_len = 0\n\n        # Advance SEQ\n        self._seq\
+      \ = (self._seq + 1) & 0xFF\n\n        # Send next frame or finish message\n\
+      \        self._send_next_frame()\n\n    # ------------------------------------------------------------------\n\
+      \    # Internal: build and prepare the next fragment (streamed by loop)\n  \
+      \  # ------------------------------------------------------------------\n  \
+      \  def _send_next_frame(self):\n        # No active message\n        if self._current_msg\
+      \ is None:\n            self._waiting_for_ack   = False\n            self._current_frame_pdu\
+      \ = None\n            self._retries_left      = 0\n            return\n\n  \
+      \      # Message fully sent\n        if self._offset >= self._msg_len:\n   \
+      \         print(\"[arq_framer] Message complete\")\n            self._current_msg\
+      \       = None\n            self._msg_len           = 0\n            self._offset\
+      \            = 0\n            self._last_chunk_len    = 0\n            self._waiting_for_ack\
+      \   = False\n            self._current_meta      = pmt.PMT_NIL\n           \
+      \ self._current_frame_pdu = None\n            self._retries_left      = 0\n\
+      \            return\n\n        # Determine next payload chunk\n        remaining\
+      \ = self._msg_len - self._offset\n        chunk_len = min(remaining, ARQ_PAYLOAD_SIZE)\n\
+      \        chunk     = self._current_msg[self._offset : self._offset + chunk_len]\n\
+      \n        is_last = 1 if (self._offset + chunk_len) >= self._msg_len else 0\n\
+      \n        last_bit = is_last & 0x01\n        is_ack   = 0  # data frame\n  \
+      \      flags    = (last_bit << 0) | (is_ack << 1)\n\n        seq = self._seq\
+      \ & 0xFF\n\n        # Build fixed-size 48-byte ARQ frame\n        frame = bytearray(ARQ_FRAME_SIZE)\n\
+      \        frame[0] = seq\n        frame[1] = flags\n        frame[2] = self._src_id\
+      \ & 0xFF\n        frame[3] = self._dst_id & 0xFF\n        frame[4:4 + chunk_len]\
+      \ = chunk  # rest stays zero-padded\n\n        frame_bytes = bytes(frame)\n\n\
+      \        out_meta = self._current_meta\n        out_vec  = pmt.init_u8vector(len(frame_bytes),\
+      \ list(frame_bytes))\n        out_pdu  = pmt.cons(out_meta, out_vec)\n\n   \
+      \     # Store current frame for retransmissions\n        self._current_frame_pdu\
+      \ = out_pdu\n\n        # Total transmits for THIS frame:\n        # - if repeat_enable\
+      \ == False -> 1 attempt\n        # - if repeat_enable == True  -> repeat_count\
+      \ attempts\n        if self.repeat_enable:\n            self._retries_left =\
+      \ max(1, int(self.repeat_count))\n        else:\n            self._retries_left\
+      \ = 1\n\n        self._last_chunk_len  = chunk_len\n        self._waiting_for_ack\
+      \ = True\n\n        print(f\"[arq_framer] Prepared frame SEQ={seq}, chunk_len={chunk_len},\
+      \ \"\n              f\"last={is_last}, retries_limit={self._retries_left}, waiting\
+      \ for ACK\")\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    repeat_count: '1000'
+    repeat_enable: 'True'
+  states:
+    _io_cache: "('arq_framer', 'blk', [('repeat_enable', 'False'), ('repeat_count',\
+      \ '1')], [('data_in', 'message', 1), ('ack_in', 'message', 1)], [('frame_out',\
+      \ 'message', 1)], '\\n    Stop-and-wait ARQ framer with fixed 48-byte frames\
+      \ (for 64B RF frame).\\n\\n    Upstream message format (from message_assembler\
+      \ on \\'data_in\\'):\\n        [src_id][dst_id][len_hi][len_lo][payload...]\\\
+      n\\n    Framer output (on \\'frame_out\\'): fixed 48-byte ARQ frames:\\n   \
+      \     byte 0   : SEQ        (uint8)\\n        byte 1   : FLAGS      (bit0 =\
+      \ LAST_FRAME, bit1 = IS_ACK, others 0)\\n        byte 2   : SRC_ID     (uint8)\\\
+      n        byte 3   : DST_ID     (uint8)\\n        byte 4.. : payload chunk (up\
+      \ to 44 bytes, zero-padded)\\n\\n    Notes:\\n      - No preamble, no length,\
+      \ no CRC here.\\n        Protocol formatter (12B header) and CRC (4B) are applied\
+      \ later to\\n        reach 64B total on the air.\\n      - Fragmentation is\
+      \ done over the entire upstream message.\\n      - ACK frames use the same 48B\
+      \ format with IS_ACK=1 and empty payload.\\n\\n    Retransmission behavior in\
+      \ this implementation:\\n      - For each DATA frame (one fragment):\\n    \
+      \      * Build the 48B frame once.\\n          * Continuously transmit that\
+      \ same frame on \"frame_out\" as a stream\\n            until either:\\n   \
+      \           - a matching ACK is received, OR\\n              - the retry limit\
+      \ for that frame is reached.\\n      - retry limit per frame:\\n          *\
+      \ repeat_enable = False  -> 1 transmit (no extra retries)\\n          * repeat_enable\
+      \ = True   -> repeat_count total transmits for that frame\\n      - Stop-and-wait\
+      \ is preserved: next fragment is not started until ACK\\n        for the current\
+      \ SEQ is accepted (or you\u2019ve exhausted retries and\\n        you decide\
+      \ what to do at a higher layer).\\n    ', ['repeat_count', 'repeat_enable'])"
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 188.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_2
+  id: epy_block
+  parameters:
+    _source_code: "import pmt\nfrom gnuradio import gr\n\nARQ_HEADER_SIZE = 4  # [SEQ][FLAGS][SRC_ID][DST_ID]\n\
+      \n\nclass blk(gr.basic_block):\n    \"\"\"\n    Frame classifier for ARQ frames.\n\
+      \n    Input (message port 'in'):\n        PDU (meta, u8vector) representing\
+      \ one ARQ frame:\n          byte 0 : SEQ\n          byte 1 : FLAGS   (bit0 =\
+      \ LAST_FRAME, bit1 = IS_ACK)\n          byte 2 : SRC_ID\n          byte 3 :\
+      \ DST_ID\n          byte 4.. : payload (zero-padded)\n\n    Outputs:\n     \
+      \   'ack_out' : PDU forwarded if frame is an ACK (IS_ACK = 1)\n        'msg_out'\
+      \ : PDU forwarded if frame is DATA  (IS_ACK = 0)\n\n    The payload is not modified;\
+      \ the whole frame is passed through.\n    \"\"\"\n\n    def __init__(self, label=\"\
+      frame_classifier\"):\n        gr.basic_block.__init__(\n            self,\n\
+      \            name=\"frame_classifier\",\n            in_sig=None,\n        \
+      \    out_sig=None,\n        )\n\n        self.label = str(label)\n\n       \
+      \ # Ports\n        self.message_port_register_in(pmt.intern(\"in\"))\n     \
+      \   self.message_port_register_out(pmt.intern(\"ack_out\"))\n        self.message_port_register_out(pmt.intern(\"\
+      msg_out\"))\n\n        self.set_msg_handler(pmt.intern(\"in\"), self.handle_pdu)\n\
+      \n    def handle_pdu(self, pdu):\n        meta = pmt.car(pdu)\n        vec \
+      \ = pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(vec):\n            print(f\"\
+      [{self.label}] ERROR: payload is not u8vector\")\n            return\n\n   \
+      \     data = bytes(pmt.u8vector_elements(vec))\n        n    = len(data)\n\n\
+      \        if n < ARQ_HEADER_SIZE:\n            print(f\"[{self.label}] ERROR:\
+      \ frame too short ({n} bytes)\")\n            return\n\n        seq   = data[0]\n\
+      \        flags = data[1]\n        src   = data[2]\n        dst   = data[3]\n\
+      \n        is_last = (flags >> 0) & 0x01\n        is_ack  = (flags >> 1) & 0x01\n\
+      \n        # Optional debug\n        print(f\"[{self.label}] frame len={n}, SEQ={seq},\
+      \ \"\n              f\"FLAGS=0x{flags:02X} (last={is_last}, ack={is_ack}), \"\
+      \n              f\"SRC={src}, DST={dst}\")\n\n        if is_ack:\n         \
+      \   # ACK frame \u2192 send to ack_out (for arq_framer.ack_in path)\n      \
+      \      self.message_port_pub(pmt.intern(\"ack_out\"), pdu)\n        else:\n\
+      \            # DATA frame \u2192 send to msg_out (for message_reassembler path)\n\
+      \            self.message_port_pub(pmt.intern(\"msg_out\"), pdu)\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: '"frame_classifier"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''frame_classifier'', ''blk'', [(''label'', "''frame_classifier''")],
+      [(''in'', ''message'', 1)], [(''msg_out'', ''message'', 1), (''ack_out'', ''message'',
+      1)], "\n    Frame classifier for ARQ frames.\n\n    Input (message port ''in''):\n        PDU
+      (meta, u8vector) representing one ARQ frame:\n          byte 0 : SEQ\n          byte
+      1 : FLAGS   (bit0 = LAST_FRAME, bit1 = IS_ACK)\n          byte 2 : SRC_ID\n          byte
+      3 : DST_ID\n          byte 4.. : payload (zero-padded)\n\n    Outputs:\n        ''ack_out''
+      : PDU forwarded if frame is an ACK (IS_ACK = 1)\n        ''msg_out'' : PDU forwarded
+      if frame is DATA  (IS_ACK = 0)\n\n    The payload is not modified; the whole
+      frame is passed through.\n    ", [''label''])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [600, 788.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_3
+  id: epy_block
+  parameters:
+    _source_code: "import pmt\nfrom gnuradio import gr\n\nARQ_FRAME_SIZE   = 48\n\
+      ARQ_HEADER_SIZE  = 4  # [SEQ][FLAGS][SRC][DST]\n\n\nclass blk(gr.basic_block):\n\
+      \    \"\"\"\n    Message reassembler for stop-and-wait ARQ frames with duplicate\
+      \ filtering.\n\n    Input (message port 'in'):\n        - DATA ARQ frames as\
+      \ PDUs:\n          [SEQ][FLAGS][SRC][DST][payload (0-padded)]\n\n    Internal\
+      \ behavior:\n        - Appends payload bytes from each DATA frame (starting\
+      \ at byte 4)\n          into an internal buffer.\n        - When a frame with\
+      \ LAST_FRAME=1 arrives:\n            * interpret buffer as:\n              \
+      \  [src_id][dst_id][len_hi][len_lo][payload...][padding...]\n            * compute\
+      \ total message length = 4 + msg_len\n            * trim padding\n         \
+      \   * compare with last delivered message:\n                - if identical ->\
+      \ drop (duplicate)\n                - if different -> emit to 'msg_out' and\
+      \ remember it\n            * clear buffer for the next message.\n    \"\"\"\n\
+      \n    def __init__(self, label=\"message_reassembler\"):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"message_reassembler\",\n            in_sig=None,\n\
+      \            out_sig=None,\n        )\n\n        self.label = str(label)\n\n\
+      \        self.message_port_register_in(pmt.intern(\"in\"))\n        self.message_port_register_out(pmt.intern(\"\
+      msg_out\"))\n\n        self.set_msg_handler(pmt.intern(\"in\"), self.handle_pdu)\n\
+      \n        # Buffer for assembling one complete message\n        self._buf =\
+      \ bytearray()\n        self._assembling = False\n\n        # Last delivered\
+      \ full message bytes (for duplicate suppression)\n        self._last_msg_bytes\
+      \ = None\n\n    def handle_pdu(self, pdu):\n        meta = pmt.car(pdu)\n  \
+      \      vec  = pmt.cdr(pdu)\n\n        if not pmt.is_u8vector(vec):\n       \
+      \     print(f\"[{self.label}] ERROR: payload is not u8vector\")\n          \
+      \  return\n\n        frame = bytes(pmt.u8vector_elements(vec))\n        n  \
+      \   = len(frame)\n\n        if n < ARQ_HEADER_SIZE:\n            print(f\"[{self.label}]\
+      \ ERROR: ARQ frame too short ({n} bytes)\")\n            return\n\n        seq\
+      \   = frame[0]\n        flags = frame[1]\n        src   = frame[2]\n       \
+      \ dst   = frame[3]\n\n        is_last = (flags >> 0) & 0x01\n        is_ack\
+      \  = (flags >> 1) & 0x01\n\n        if is_ack:\n            # Should not see\
+      \ ACKs here if wired correctly\n            print(f\"[{self.label}] WARNING:\
+      \ received ACK frame on reassembler, ignoring\")\n            return\n\n   \
+      \     # Payload chunk (with zero padding)\n        payload_chunk = frame[ARQ_HEADER_SIZE:]\n\
+      \n        # Start of a new message?\n        if not self._assembling:\n    \
+      \        self._buf = bytearray()\n            self._assembling = True\n    \
+      \        print(f\"[{self.label}] Starting new message assembly \"\n        \
+      \          f\"(SEQ={seq}, SRC={src}, DST={dst})\")\n\n        # Append chunk\n\
+      \        self._buf.extend(payload_chunk)\n\n        # If not last frame, just\
+      \ wait for more\n        if not is_last:\n            print(f\"[{self.label}]\
+      \ Appended chunk (len={len(payload_chunk)}), \"\n                  f\"buffered={len(self._buf)}\
+      \ bytes, waiting for more frames\")\n            return\n\n        # Last frame:\
+      \ reconstruct full message and emit (or drop as duplicate)\n        print(f\"\
+      [{self.label}] Last frame received (SEQ={seq}), \"\n              f\"total buffered={len(self._buf)}\
+      \ bytes\")\n\n        full_msg = bytes(self._buf)\n\n        if len(full_msg)\
+      \ < 4:\n            print(f\"[{self.label}] ERROR: assembled message too short\
+      \ \"\n                  f\"({len(full_msg)} bytes)\")\n            self._buf\
+      \ = bytearray()\n            self._assembling = False\n            return\n\n\
+      \        # Parse original message header:\n        # [src_id][dst_id][len_hi][len_lo][payload...]\n\
+      \        src_id = full_msg[0]\n        dst_id = full_msg[1]\n        msg_len\
+      \ = (full_msg[2] << 8) | full_msg[3]\n\n        total_needed = 4 + msg_len\n\
+      \n        if total_needed > len(full_msg):\n            print(f\"[{self.label}]\
+      \ WARNING: needed {total_needed} bytes, \"\n                  f\"but only {len(full_msg)}\
+      \ available; truncating\")\n            total_needed = len(full_msg)\n\n   \
+      \     msg_bytes = full_msg[:total_needed]\n\n        # ---------- DUPLICATE\
+      \ SUPPRESSION ----------\n        if self._last_msg_bytes is not None and msg_bytes\
+      \ == self._last_msg_bytes:\n            print(f\"[{self.label}] Duplicate complete\
+      \ message detected; \"\n                  f\"dropping (src={src_id}, dst={dst_id},\
+      \ len={msg_len})\")\n        else:\n            # Build output PDU for ZMQ PUB\
+      \ (or any upper layer)\n            out_meta = pmt.make_dict()  # or propagate\
+      \ some fields if you like\n            out_vec  = pmt.init_u8vector(len(msg_bytes),\
+      \ list(msg_bytes))\n            out_pdu  = pmt.cons(out_meta, out_vec)\n\n \
+      \           self.message_port_pub(pmt.intern(\"msg_out\"), out_pdu)\n\n    \
+      \        print(f\"[{self.label}] Emitted reassembled message: \"\n         \
+      \         f\"src={src_id}, dst={dst_id}, len={msg_len}\")\n\n            # Remember\
+      \ this message as the last delivered one\n            self._last_msg_bytes =\
+      \ msg_bytes\n        # -------------------------------------------\n\n     \
+      \   # Reset for next message\n        self._buf = bytearray()\n        self._assembling\
+      \ = False\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: '"message_reassembler"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: ('message_reassembler', 'blk', [('label', "'message_reassembler'")],
+      [('in', 'message', 1)], [('msg_out', 'message', 1)], "\n    Message reassembler
+      for stop-and-wait ARQ frames with duplicate filtering.\n\n    Input (message
+      port 'in'):\n        - DATA ARQ frames as PDUs:\n          [SEQ][FLAGS][SRC][DST][payload
+      (0-padded)]\n\n    Internal behavior:\n        - Appends payload bytes from
+      each DATA frame (starting at byte 4)\n          into an internal buffer.\n        -
+      When a frame with LAST_FRAME=1 arrives:\n            * interpret buffer as:\n                [src_id][dst_id][len_hi][len_lo][payload...][padding...]\n            *
+      compute total message length = 4 + msg_len\n            * trim padding\n            *
+      compare with last delivered message:\n                - if identical -> drop
+      (duplicate)\n                - if different -> emit to 'msg_out' and remember
+      it\n            * clear buffer for the next message.\n    ", ['label'])
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [832, 788.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_4
+  id: epy_block
+  parameters:
+    _source_code: "import pmt\nfrom gnuradio import gr\n\nARQ_FRAME_SIZE   = 48\n\
+      ARQ_HEADER_SIZE  = 4  # [SEQ][FLAGS][SRC][DST]\n\n\nclass blk(gr.basic_block):\n\
+      \    \"\"\"\n    ACK generator for ARQ frames.\n\n    Input (message port 'in'):\n\
+      \        - PDU (meta, u8vector) representing one DATA ARQ frame:\n         \
+      \ [SEQ][FLAGS][SRC][DST][payload...]\n\n    Output (message port 'out'):\n \
+      \       - PDU(s) that are ACK ARQ frames, ready to be sent through\n       \
+      \   CRC Append \u2192 Protocol Formatter \u2192 radio.\n\n    ACK frame format\
+      \ (48B):\n        byte 0 : SEQ       (copied from DATA frame)\n        byte\
+      \ 1 : FLAGS     (LAST=1, IS_ACK=1 => 0x03)\n        byte 2 : SRC_ID    (original\
+      \ DST_ID)\n        byte 3 : DST_ID    (original SRC_ID)\n        byte 4..47\
+      \ : zeros\n\n    Parameters:\n        repeat_enable (bool) : if True, send ACK\
+      \ repeat_count times\n        repeat_count  (int)  : number of repeats when\
+      \ enabled\n    \"\"\"\n\n    def __init__(self, repeat_enable=False, repeat_count=1,\n\
+      \                 label=\"ack_generator\"):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"ack_generator\",\n            in_sig=None,\n\
+      \            out_sig=None,\n        )\n\n        self.label = str(label)\n\n\
+      \        self.repeat_enable = bool(repeat_enable)\n        self.repeat_count\
+      \  = max(1, int(repeat_count))\n\n        # Ports\n        self.message_port_register_in(pmt.intern(\"\
+      in\"))\n        self.message_port_register_out(pmt.intern(\"out\"))\n\n    \
+      \    self.set_msg_handler(pmt.intern(\"in\"), self.handle_pdu)\n\n    def handle_pdu(self,\
+      \ pdu):\n        meta = pmt.car(pdu)\n        vec  = pmt.cdr(pdu)\n\n      \
+      \  if not pmt.is_u8vector(vec):\n            print(f\"[{self.label}] ERROR:\
+      \ payload is not u8vector\")\n            return\n\n        data = bytes(pmt.u8vector_elements(vec))\n\
+      \        n    = len(data)\n\n        if n < ARQ_HEADER_SIZE:\n            print(f\"\
+      [{self.label}] ERROR: frame too short ({n} bytes)\")\n            return\n\n\
+      \        seq   = data[0]\n        flags = data[1]\n        src   = data[2]\n\
+      \        dst   = data[3]\n\n        is_ack = (flags >> 1) & 0x01\n        if\
+      \ is_ack:\n            # Defensive: we shouldn't be fed ACKs on this path\n\
+      \            print(f\"[{self.label}] WARNING: got ACK frame on ack_generator\
+      \ input, ignoring\")\n            return\n\n        # --- Build ACK frame ---\n\
+      \        ack_seq  = seq\n        last_bit = 1  # mark ACK as \"last\" for convenience\n\
+      \        is_ack   = 1\n        ack_flags = (last_bit << 0) | (is_ack << 1) \
+      \ # 0b0011 = 0x03\n\n        ack_src = dst  # swap src/dst\n        ack_dst\
+      \ = src\n\n        frame = bytearray(ARQ_FRAME_SIZE)\n        frame[0] = ack_seq\
+      \ & 0xFF\n        frame[1] = ack_flags & 0xFF\n        frame[2] = ack_src &\
+      \ 0xFF\n        frame[3] = ack_dst & 0xFF\n        # bytes 4..47 remain zeros\n\
+      \n        ack_bytes = bytes(frame)\n\n        # Metadata for ACK \u2014 you\
+      \ can keep it empty or copy selected fields\n        ack_meta = pmt.make_dict()\n\
+      \        ack_vec  = pmt.init_u8vector(len(ack_bytes), list(ack_bytes))\n   \
+      \     ack_pdu  = pmt.cons(ack_meta, ack_vec)\n\n        repeats = self.repeat_count\
+      \ if self.repeat_enable else 1\n\n        print(f\"[{self.label}] Generated\
+      \ ACK for SEQ={ack_seq}, \"\n              f\"SRC={ack_src}, DST={ack_dst},\
+      \ repeats={repeats}\")\n\n        for _ in range(repeats):\n            self.message_port_pub(pmt.intern(\"\
+      out\"), ack_pdu)\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    label: '"ack_generator"'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    repeat_count: '4'
+    repeat_enable: 'True'
+  states:
+    _io_cache: "('ack_generator', 'blk', [('repeat_enable', 'False'), ('repeat_count',\
+      \ '1'), ('label', \"'ack_generator'\")], [('in', 'message', 1)], [('out', 'message',\
+      \ 1)], \"\\n    ACK generator for ARQ frames.\\n\\n    Input (message port 'in'):\\\
+      n        - PDU (meta, u8vector) representing one DATA ARQ frame:\\n        \
+      \  [SEQ][FLAGS][SRC][DST][payload...]\\n\\n    Output (message port 'out'):\\\
+      n        - PDU(s) that are ACK ARQ frames, ready to be sent through\\n     \
+      \     CRC Append \u2192 Protocol Formatter \u2192 radio.\\n\\n    ACK frame\
+      \ format (48B):\\n        byte 0 : SEQ       (copied from DATA frame)\\n   \
+      \     byte 1 : FLAGS     (LAST=1, IS_ACK=1 => 0x03)\\n        byte 2 : SRC_ID\
+      \    (original DST_ID)\\n        byte 3 : DST_ID    (original SRC_ID)\\n   \
+      \     byte 4..47 : zeros\\n\\n    Parameters:\\n        repeat_enable (bool)\
+      \ : if True, send ACK repeat_count times\\n        repeat_count  (int)  : number\
+      \ of repeats when enabled\\n    \", ['label', 'repeat_count', 'repeat_enable'])"
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [832, 844.0]
+    rotation: 0
+    state: enabled
+- name: epy_block_5
+  id: epy_block
+  parameters:
+    _source_code: "import pmt\nfrom gnuradio import gr\n\n\nclass blk(gr.basic_block):\n\
+      \    \"\"\"\n    Simple PDU multiplexer:\n      - Input ports: 'data_in', 'ack_in'\n\
+      \      - Output port: 'out'\n    For any PDU arriving on either input, it forwards\
+      \ it to 'out'.\n    \"\"\"\n\n    def __init__(self):\n        gr.basic_block.__init__(\n\
+      \            self,\n            name=\"pdu_mux\",\n            in_sig=None,\n\
+      \            out_sig=None,\n        )\n\n        self.message_port_register_in(pmt.intern(\"\
+      data_in\"))\n        self.message_port_register_in(pmt.intern(\"ack_in\"))\n\
+      \        self.set_msg_handler(pmt.intern(\"data_in\"), self._handle_pdu)\n \
+      \       self.set_msg_handler(pmt.intern(\"ack_in\"), self._handle_pdu)\n\n \
+      \       self.message_port_register_out(pmt.intern(\"out\"))\n\n    def _handle_pdu(self,\
+      \ pdu):\n        # Just forward any PDU to the output\n        self.message_port_pub(pmt.intern(\"\
+      out\"), pdu)\n"
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+  states:
+    _io_cache: '(''pdu_mux'', ''blk'', [], [(''data_in'', ''message'', 1), (''ack_in'',
+      ''message'', 1)], [(''out'', ''message'', 1)], "\n    Simple PDU multiplexer:\n      -
+      Input ports: ''data_in'', ''ack_in''\n      - Output port: ''out''\n    For
+      any PDU arriving on either input, it forwards it to ''out''.\n    ", [])'
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [904, 204.0]
+    rotation: 0
+    state: enabled
+- name: fft_filter_xxx_0
+  id: fft_filter_xxx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    decim: '1'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    nthreads: '1'
+    samp_delay: '0'
+    taps: rrc_taps
+    type: ccc
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [160, 532.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_0_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 204.0]
+    rotation: 0
+    state: enabled
+- name: pdu_pdu_to_tagged_stream_0_0_0
+  id: pdu_pdu_to_tagged_stream
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1224, 268.0]
+    rotation: 0
+    state: enabled
+- name: pdu_tagged_stream_to_pdu_0_0
+  id: pdu_tagged_stream_to_pdu
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    tag: packet_len
+    type: byte
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [200, 820.0]
+    rotation: 0
+    state: true
+- name: qtgui_const_sink_x_0
+  id: qtgui_const_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '0.3'
+    alpha3: '0.3'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: '"blue"'
+    color10: '"red"'
+    color2: '"red"'
+    color3: '"red"'
+    color4: '"red"'
+    color5: '"red"'
+    color6: '"red"'
+    color7: '"red"'
+    color8: '"red"'
+    color9: '"red"'
+    comment: ''
+    grid: 'False'
+    gui_hint: 2,0,10,10
+    label1: ''
+    label10: ''
+    label2: ''
+    label3: ''
+    label4: ''
+    label5: ''
+    label6: ''
+    label7: ''
+    label8: ''
+    label9: ''
+    legend: 'False'
+    marker1: '0'
+    marker10: '0'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '0'
+    marker5: '0'
+    marker6: '0'
+    marker7: '0'
+    marker8: '0'
+    marker9: '0'
+    name: Synced & Equalized Constellation
+    nconnections: '1'
+    size: '1024'
+    style1: '0'
+    style10: '0'
+    style2: '5'
+    style3: '1'
+    style4: '0'
+    style5: '0'
+    style6: '0'
+    style7: '0'
+    style8: '0'
+    style9: '0'
+    tr_chan: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: complex
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '2'
+    width3: '2'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    xmax: '3'
+    xmin: '-3'
+    ymax: '3'
+    ymin: '-3'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [984, 484.0]
+    rotation: 0
+    state: enabled
+- name: qtgui_time_sink_x_0
+  id: qtgui_time_sink_x
+  parameters:
+    affinity: ''
+    alias: ''
+    alpha1: '1.0'
+    alpha10: '1.0'
+    alpha2: '1.0'
+    alpha3: '1.0'
+    alpha4: '1.0'
+    alpha5: '1.0'
+    alpha6: '1.0'
+    alpha7: '1.0'
+    alpha8: '1.0'
+    alpha9: '1.0'
+    autoscale: 'False'
+    axislabels: 'True'
+    color1: blue
+    color10: dark blue
+    color2: red
+    color3: green
+    color4: black
+    color5: cyan
+    color6: magenta
+    color7: yellow
+    color8: dark red
+    color9: dark green
+    comment: ''
+    ctrlpanel: 'False'
+    entags: 'True'
+    grid: 'False'
+    gui_hint: ''
+    label1: Signal 1
+    label10: Signal 10
+    label2: Signal 2
+    label3: Signal 3
+    label4: Signal 4
+    label5: Signal 5
+    label6: Signal 6
+    label7: Signal 7
+    label8: Signal 8
+    label9: Signal 9
+    legend: 'True'
+    marker1: '-1'
+    marker10: '-1'
+    marker2: '-1'
+    marker3: '-1'
+    marker4: '-1'
+    marker5: '-1'
+    marker6: '-1'
+    marker7: '-1'
+    marker8: '-1'
+    marker9: '-1'
+    name: '""'
+    nconnections: '1'
+    size: '1024'
+    srate: samp_rate
+    stemplot: 'False'
+    style1: '1'
+    style10: '1'
+    style2: '1'
+    style3: '1'
+    style4: '1'
+    style5: '1'
+    style6: '1'
+    style7: '1'
+    style8: '1'
+    style9: '1'
+    tr_chan: '0'
+    tr_delay: '0'
+    tr_level: '0.0'
+    tr_mode: qtgui.TRIG_MODE_FREE
+    tr_slope: qtgui.TRIG_SLOPE_POS
+    tr_tag: '""'
+    type: float
+    update_time: '0.10'
+    width1: '1'
+    width10: '1'
+    width2: '1'
+    width3: '1'
+    width4: '1'
+    width5: '1'
+    width6: '1'
+    width7: '1'
+    width8: '1'
+    width9: '1'
+    ylabel: Amplitude
+    ymax: '1'
+    ymin: '-1'
+    yunit: '""'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1152, 604.0]
+    rotation: 0
+    state: enabled
+- name: soapy_bladerf_sink_0
+  id: soapy_bladerf_sink
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: '0.0'
+    center_freq: '3000000000'
+    comment: ''
+    dev_args: ''
+    freq_correction: '0'
+    gain: '20.0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [816, 340.0]
+    rotation: 0
+    state: disabled
+- name: soapy_bladerf_source_0
+  id: soapy_bladerf_source
+  parameters:
+    affinity: ''
+    alias: ''
+    bandwidth: 1.5e6
+    center_freq: freq
+    comment: ''
+    dev_args: ''
+    freq_correction: '0'
+    gain: '20.0'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    samp_rate: samp_rate
+    type: fc32
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 592.0]
+    rotation: 0
+    state: disabled
+- name: virtual_sink_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ACK_OUT
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1008, 892.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_1
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: decodedSignal
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1168, 428.0]
+    rotation: 0
+    state: true
+- name: virtual_sink_1_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ACK_IN
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [840, 916.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_2
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: transmitStream
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1608, 236.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_2_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rxIN
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 324.0]
+    rotation: 0
+    state: enabled
+- name: virtual_sink_2_0_0
+  id: virtual_sink
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: decodedBits
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1056, 684.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: decodedSignal
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 684.0]
+    rotation: 0
+    state: true
+- name: virtual_source_1_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ACK_OUT
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [504, 268.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_2
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: ACK_IN
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [312, 172.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_3
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: transmitStream
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 372.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_3_0
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: rxIN
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [24, 484.0]
+    rotation: 0
+    state: enabled
+- name: virtual_source_3_1
+  id: virtual_source
+  parameters:
+    alias: ''
+    comment: ''
+    stream_id: decodedBits
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 820.0]
+    rotation: 0
+    state: enabled
+- name: zeromq_pub_msg_sink_0
+  id: zeromq_pub_msg_sink
+  parameters:
+    address: tcp://*:5556
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    timeout: '100'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1032, 784.0]
+    rotation: 0
+    state: enabled
+- name: zeromq_sub_source_0
+  id: zeromq_sub_source
+  parameters:
+    address: tcp://*:5555
+    affinity: ''
+    alias: ''
+    bind: 'True'
+    comment: ''
+    hwm: '-1'
+    key: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    pass_tags: 'False'
+    timeout: '100'
+    type: byte
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [8, 200.0]
+    rotation: 0
+    state: enabled
+
+connections:
+- [blocks_repack_bits_bb_0, '0', blocks_uchar_to_float_0, '0']
+- [blocks_repack_bits_bb_0, '0', virtual_sink_2_0_0, '0']
+- [blocks_tagged_stream_mux_0, '0', virtual_sink_2, '0']
+- [blocks_throttle2_0_0, '0', epy_block_0, '0']
+- [blocks_uchar_to_float_0, '0', qtgui_time_sink_x_0, '0']
+- [blocks_unpack_k_bits_bb_0, '0', digital_correlate_access_code_xx_ts_0, '0']
+- [channels_channel_model_0_0, '0', virtual_sink_2_0, '0']
+- [digital_constellation_decoder_cb_0, '0', virtual_sink_1, '0']
+- [digital_constellation_modulator_0_0, '0', channels_channel_model_0_0, '0']
+- [digital_correlate_access_code_xx_ts_0, '0', blocks_repack_bits_bb_0, '0']
+- [digital_costas_loop_cc_0, '0', digital_constellation_decoder_cb_0, '0']
+- [digital_costas_loop_cc_0, '0', qtgui_const_sink_x_0, '0']
+- [digital_crc_append_0, out, epy_block_5, data_in]
+- [digital_crc_append_0_0, out, epy_block_5, ack_in]
+- [digital_crc_check_0, ok, epy_block_2, in]
+- [digital_diff_decoder_bb_0, '0', digital_map_bb_0, '0']
+- [digital_linear_equalizer_0, '0', digital_costas_loop_cc_0, '0']
+- [digital_map_bb_0, '0', blocks_unpack_k_bits_bb_0, '0']
+- [digital_protocol_formatter_async_0, header, pdu_pdu_to_tagged_stream_0_0, pdus]
+- [digital_protocol_formatter_async_0, payload, pdu_pdu_to_tagged_stream_0_0_0, pdus]
+- [digital_symbol_sync_xx_0, '0', digital_linear_equalizer_0, '0']
+- [epy_block_0, msg_out, epy_block_1, data_in]
+- [epy_block_1, frame_out, digital_crc_append_0, in]
+- [epy_block_2, ack_out, virtual_sink_1_0, '0']
+- [epy_block_2, msg_out, epy_block_3, in]
+- [epy_block_2, msg_out, epy_block_4, in]
+- [epy_block_3, msg_out, zeromq_pub_msg_sink_0, in]
+- [epy_block_4, out, blocks_message_debug_0, print]
+- [epy_block_4, out, virtual_sink_0, '0']
+- [epy_block_5, out, digital_protocol_formatter_async_0, in]
+- [fft_filter_xxx_0, '0', digital_symbol_sync_xx_0, '0']
+- [pdu_pdu_to_tagged_stream_0_0, '0', blocks_tagged_stream_mux_0, '0']
+- [pdu_pdu_to_tagged_stream_0_0_0, '0', blocks_tagged_stream_mux_0, '1']
+- [pdu_tagged_stream_to_pdu_0_0, pdus, digital_crc_check_0, in]
+- [soapy_bladerf_source_0, '0', fft_filter_xxx_0, '0']
+- [virtual_source_1, '0', digital_diff_decoder_bb_0, '0']
+- [virtual_source_1_0, '0', digital_crc_append_0_0, in]
+- [virtual_source_2, '0', epy_block_1, ack_in]
+- [virtual_source_3, '0', digital_constellation_modulator_0_0, '0']
+- [virtual_source_3_0, '0', fft_filter_xxx_0, '0']
+- [virtual_source_3_1, '0', pdu_tagged_stream_to_pdu_0_0, '0']
+- [zeromq_sub_source_0, '0', blocks_throttle2_0_0, '0']
+
+metadata:
+  file_format: 1
+  grc_version: 3.10.12.0
